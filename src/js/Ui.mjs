@@ -19,6 +19,7 @@ export class UiService {
   }
 
   renderCard(userText, transformedText, gifUrl) {
+    this.resultsContainer.innerHTML = '';
     const card = document.createElement('div');
     card.className = 'gif-card';
     card.dataset.id = Date.now();
@@ -39,7 +40,7 @@ export class UiService {
         card.style.borderColor = '#FFD700';
     });
     
-    this.resultsContainer.prepend(card);
+    this.resultsContainer.appendChild(card);
 
     const gifImg = card.querySelector('img');
     gifImg.style.cursor = 'zoom-in';

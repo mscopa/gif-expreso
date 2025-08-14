@@ -23,10 +23,3 @@ uiService.bindSubmit(async userText => {
     alert("An error ocurred. Try again.");
   }
 });
-
-window.addEventListener("storage", e => {
-  if (e.key === STORAGE_KEY) {
-    uiService.renderHistory(storageService.getHistory());
-    alert("History updated from another tab!");
-  }
-});
