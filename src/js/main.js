@@ -8,7 +8,7 @@ const STORAGE_KEY = "gifExpresoHistory";
 
 const apiService = new ApiService(GIPHY_API_KEY, GEMINI_API_KEY);
 const storageService = new StorageService(STORAGE_KEY);
-const uiService = new UiService();
+const uiService = new UiService(storageService);
 
 uiService.renderHistory(storageService.getHistory());
 
@@ -21,5 +21,12 @@ uiService.bindSubmit(async userText => {
     uiService.renderHistory(storageService.getHistory());
   } catch (error) {
     alert("An error ocurred. Try again.");
+  }
+});
+
+window.addEventListener("storage", e => {
+  if (e.key === STORAGE_KEY) {
+    uiService.renderHistory(storageService.getHistory());
+    alert("History updated from another tab!");
   }
 });
